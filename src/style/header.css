@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    max-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px;
+    z-index: 100;
+}
+
+.logo {
+    background-image: url('../video/logo.gif');
+    width: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100px;
+}
+
+.taskbar {
+    min-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    width: 80px;
+    height: 40px;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    position: relative;
+}
+
+.switch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    transition: transform 0.1s linear;
+}
+
+.sun {
+    position: absolute;
+    top: 20%;
+}
+
+.moon {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+.move {
+    transform: translateX(40px);
+}
+
+.background-music {
+    position: absolute;
+}
+
+.volume {
+    position: fixed;
+    top: 15%;
+    left: 10%;
+    z-index: 100;
+    padding: 5px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.volume::before {
+    content: "";
+    display: block;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: all 0.2s;
+}
+
+.volume:hover::before {
+    background-color: #f3a952;
+}
+
+.volume:hover {
+    border-color: #f3a952;
+}
+
+.volume-s {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    top: 0px;
+}
+
+.change-volume {
+    width: 200px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.542);
+    position: absolute;
+    top: 40px;
+    left: -80px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+    display: none;
+}
+
+.volume:hover .change-volume {
+    display: block;
+}
+
+.range {
+    margin-top: 5px;
+}
+
+.title {
+    background: linear-gradient(269.36deg, rgba(225, 134, 96, .9) 23.92%, rgba(244, 202, 93, .9) 101.14%);
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+.sign-up {
+    padding: 8px 8px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ffffff69;
+    color: white;
+}
+
+.bottom-bar {
+    width: 100%;
+    padding: 32px;
+    position: fixed;
+    bottom: 0;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-music {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 150px;
+}
+
+.btn-mh {
+    width: 55px;
+}
