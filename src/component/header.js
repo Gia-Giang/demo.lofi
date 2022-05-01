@@ -13,6 +13,7 @@ import henkiepsau from "../video/music/HenKiepSau-KhaHiep-7017276.mp3"
 import dauodaynay from "../video/music/Dau O Day Nay - Nal.mp3"
 import hoyeuaimatroi from "../video/music/HoYeuAiMatRoiLofiVersion-DoanHieuMrPaa-6973827.mp3"
 import { IconSun, IconShare, IconSquare, IconMenu2, IconMoon } from '@tabler/icons';
+import SideBar from "./sidebar";
 const Header = () => {
     const [list, setList] = useState({
         playing: false,
@@ -27,10 +28,18 @@ const Header = () => {
     const [volume, setVolume] = useState(0)
     const listUrlAudio = [chungtacuahientai, henkiepsau, dauodaynay, hoyeuaimatroi];
     const [urlAudio, setUrlAudio] = useState(listUrlAudio[0])
-    const [id, setId] = useState(0)
+    const [id, setId] = useState(1)
     useEffect(() => {
-        audioRef.current.volume = 0.5
+        audioRef.current.volume = 0.5;
+        if (audioRef.current.ended) {
+            setIsplay(true)
+        }
     }, [])
+    const handelTimeUp = () => {
+        if (audioRef.current.ended) {
+            setIsplay(true)
+        }
+    }
     const handelAddMove = () => {
         setList({
             ...list,
@@ -46,9 +55,6 @@ const Header = () => {
     const handelIsplay = () => {
         setIsplay(!isplay)
         isplay ? audioRef.current.play() : audioRef.current.pause();
-        if (audioRef.current.ended) {
-            setIsplay(true)
-        }
         setList({
             ...list,
             playing: true
@@ -64,7 +70,6 @@ const Header = () => {
         setIsplay(true)
     }
     const handeComeBack = () => {
-        console.log(id)
         if (id < 0) {
             return
         }
@@ -83,19 +88,26 @@ const Header = () => {
                             {ismove ? <IconSun color="white" className={`sun ${!ismove && "move"}`} /> : <IconMoon color="white" className={`moon ${!ismove && "move"}`} />}
                         </div>
                     </div>
-                    <div className="title">Hello world</div>
-                    <div className="form">
+                    <div className="title">I'm want you</div>
+                    <div className="form augment-opacity">
                         <button className="sign-up">Sign up</button>
                     </div>
-                    <div className="share">
+                    <div className="share augment-opacity">
                         <IconShare color="white" />
                     </div>
-                    <div className="extend">
+                    <div className="extend augment-opacity">
                         <IconSquare color="white" />
                     </div>
-                    <div className="menu">
+                    <div className="menu augment-opacity">
                         <IconMenu2 color="white" />
                     </div>
+                </div>
+            </div>
+            <div className="volume">
+                <div className="volume-s"></div>
+                <div className="change-volume">
+                    <h1>volume</h1>
+                    <input type={"range"} className="range" onChange={(e) => handelChangeRange(e)} />
                 </div>
             </div>
             <div className="background-music">
@@ -108,13 +120,6 @@ const Header = () => {
                     loop={list.loop}
                     style={{ opacity: ismove ? 1 : 0, transition: "0.2s linear" }}
                 />
-                <div className="volume">
-                    <div className="volume-s"></div>
-                    <div className="change-volume">
-                        <h1>volume</h1>
-                        <input type={"range"} className="range" onChange={(e) => handelChangeRange(e)} />
-                    </div>
-                </div>
             </div>
             <div className="background-music">
                 <ReactPlayer
@@ -142,6 +147,7 @@ const Header = () => {
                     }}
                 />
             </div>
+            <SideBar />
             <div className="bottom-bar">
                 <div className="bottom-title">
                     <p>Music by - lofi.co 2022 ©</p>
@@ -158,7 +164,7 @@ const Header = () => {
             <audio
                 ref={audioRef}
                 src={urlAudio}
-                onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
+                onTimeUpdate={() => handelTimeUp()}
                 controls
                 hidden
             />
