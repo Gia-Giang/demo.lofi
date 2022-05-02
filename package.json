@@ -1,7 +1,7 @@
 {
   "name": "lofi",
   "version": "0.1.0",
-  "homepage": "https://gia-giang.github.io/lofi/",
+  "homepage": "https://gia-giang.github.io/lofig/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
