@@ -12,7 +12,9 @@ import chungtacuahientai from "../video/music/chungtacuahientai.m4a"
 import henkiepsau from "../video/music/HenKiepSau-KhaHiep-7017276.mp3"
 import dauodaynay from "../video/music/Dau O Day Nay - Nal.mp3"
 import hoyeuaimatroi from "../video/music/HoYeuAiMatRoiLofiVersion-DoanHieuMrPaa-6973827.mp3"
-import { IconSun, IconShare, IconSquare, IconMenu2, IconMoon } from '@tabler/icons';
+import tiengmuaroi from "../video/music/Tieng-mua-roi-ti-tach-www_nhacchuongvui_com.mp3"
+import thatthe from "../video/music/That The - H-Kray_ Truzg.mp3"
+import { IconSun, IconShare, IconSquare, IconMenu2, IconMoon, IconBrandTinder } from '@tabler/icons';
 import SideBar from "./sidebar";
 const Header = () => {
     const [list, setList] = useState({
@@ -22,13 +24,29 @@ const Header = () => {
         volume: 1,
         loop: true
     })
+    const listMenu = ["Login", "Pricing", "Gerenal setting", "contact us", "How it works", "Play list"]
+    const videoSun = useRef()
+    const videoMoon = useRef()
+    const videoRainSun = useRef()
+    const audioRain = useRef()
+    const toggleMenu = useRef()
     const [isplay, setIsplay] = useState(true)
     const [ismove, setIsmove] = useState(true);
-    const [currentTime, setCurrentTime] = useState(0);
     const [volume, setVolume] = useState(0)
-    const listUrlAudio = [chungtacuahientai, henkiepsau, dauodaynay, hoyeuaimatroi];
+    const listUrlAudio = [chungtacuahientai, henkiepsau, dauodaynay, hoyeuaimatroi, thatthe];
     const [urlAudio, setUrlAudio] = useState(listUrlAudio[0])
-    const [id, setId] = useState(1)
+    const [id, setId] = useState(1);
+    const [isVolumeCity, setIsVolumeCity] = useState(true);
+    const ElistMenu = (list) => {
+        return list.map((user, index) => {
+            return (
+                <div key={index} className="part">
+                    <span className="icon-part"><IconBrandTinder /></span>
+                    <span className="content-part">{user}</span>
+                </div>
+            )
+        })
+    }
     useEffect(() => {
         audioRef.current.volume = 0.5;
         if (audioRef.current.ended) {
@@ -40,6 +58,7 @@ const Header = () => {
             setIsplay(true)
         }
     }
+
     const handelAddMove = () => {
         setList({
             ...list,
@@ -53,6 +72,9 @@ const Header = () => {
     }
     const audioRef = useRef();
     const handelIsplay = () => {
+        videoSun.current.play()
+        videoMoon.current.play()
+        videoRainSun.current.play()
         setIsplay(!isplay)
         isplay ? audioRef.current.play() : audioRef.current.pause();
         setList({
@@ -62,7 +84,7 @@ const Header = () => {
     }
     const handelNext = () => {
         console.log(id)
-        if (id > 3) {
+        if (id > listUrlAudio.length - 1) {
             return
         }
         setId(id + 1)
@@ -77,13 +99,41 @@ const Header = () => {
         setUrlAudio(listUrlAudio[id])
         setIsplay(true)
     }
+    const TimeUpdate = (e) => {
+        if (videoSun.current.ended || videoMoon.current.ended) {
+            videoMoon.current.play()
+            videoSun.current.play()
+            videoRainSun.current.play()
+        }
+    }
+    const handelVolumeCity = (e) => {
+        e.stopPropagation()
+        setIsVolumeCity(!isVolumeCity)
+        isVolumeCity ? audioRain.current.play() : audioRain.current.pause()
+    }
+    const handelVolumeRain = (e) => {
+        audioRain.current.volume = e.target.value / 100;
+    }
+    const handelMenu = (a) => {
+        if (a.current.style.display == "block") {
+            a.current.style.display = "none";
+        } else {
+            a.current.style.display = "block";
+        }
+        console.log(toggleMenu.current.style.display)
+    }
+    const handelChooseMusic = (id) => {
+        setUrlAudio(listUrlAudio[id])
+        audioRef.current.pause()
+        setIsplay(true)
+    }
     return (
         <div className="header">
-            <div className="top">
+            <div className="top" >
                 <div className="logo"></div>
                 <div className="taskbar">
                     <div className="container" style={{ backgroundColor: ismove ? "#f3a952" : "#ffffff2e" }}>
-                        <button className={`switch ${ismove && "move"}`} onClick={() => handelAddMove()}></button>
+                        <button className={`switch ${ismove && "move"}`} onClick={(e) => handelAddMove(e)} ></button>
                         <div>
                             {ismove ? <IconSun color="white" className={`sun ${!ismove && "move"}`} /> : <IconMoon color="white" className={`moon ${!ismove && "move"}`} />}
                         </div>
@@ -98,56 +148,54 @@ const Header = () => {
                     <div className="extend augment-opacity">
                         <IconSquare color="white" />
                     </div>
-                    <div className="menu augment-opacity">
+                    <div className="menu augment-opacity" onClick={() => handelMenu(toggleMenu)}>
                         <IconMenu2 color="white" />
+                        <div className="pull-main"></div>
+                        <div className="list-menu " ref={toggleMenu}>
+                            {ElistMenu(listMenu)}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="volume">
-                <div className="volume-s"></div>
-                <div className="change-volume">
-                    <h1>volume</h1>
-                    <input type={"range"} className="range" onChange={(e) => handelChangeRange(e)} />
+            <div className="volume" onClick={(e) => handelVolumeCity(e)}>
+                <div className="pull-main"></div>
+                <div className="change-volume" onClick={(e) => e.stopPropagation()}>
+                    <h1>City Rain</h1>
+                    <input type={"range"} className={`range ${isVolumeCity && "hide"}`} onChange={(e) => handelVolumeRain(e)} />
                 </div>
             </div>
             <div className="background-music">
-                <ReactPlayer
+                <video
+                    ref={videoSun}
                     width="100%"
                     height="100%"
-                    playing={list.playing}
-                    url={list.url}
-                    volume={list.volume}
-                    loop={list.loop}
-                    style={{ opacity: ismove ? 1 : 0, transition: "0.2s linear" }}
+                    src={list.url}
+                    style={{ opacity: ismove && isVolumeCity ? 1 : 0, transition: "0.2s linear" }}
+                    onTimeUpdate={(e) => TimeUpdate(e)}
                 />
             </div>
             <div className="background-music">
-                <ReactPlayer
+                <video
+                    ref={videoRainSun}
                     width="100%"
                     height="100%"
-                    playing={list.playing}
-                    url="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/book-cafe/Interior+-+Night.mp4"
-                    volume={list.volume}
-                    loop={list.loop}
+                    src={"https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/book-cafe/Interior+-+Rainy+Day.mp4"}
+                    style={{ opacity: !isVolumeCity ? 1 : 0, transition: "0.2s linear" }}
+                    onTimeUpdate={(e) => TimeUpdate(e)}
+                />
+            </div>
+            <div className="background-music">
+                <video
+                    ref={videoMoon}
+                    width="100%"
+                    height="100%"
+                    src="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/book-cafe/Interior+-+Night.mp4"
                     style={{
                         opacity: ismove ? 0 : 1, transition: "0.2s linear"
                     }}
                 />
             </div>
-            <div className="background-music">
-                <ReactPlayer
-                    width="100%"
-                    height="100%"
-                    playing={list.playing}
-                    url="https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/book-cafe/Interior+-+Night.mp4"
-                    volume={list.volume}
-                    loop={list.loop}
-                    style={{
-                        opacity: ismove ? 0 : 1, transition: "0.2s linear"
-                    }}
-                />
-            </div>
-            <SideBar />
+            <SideBar changeVolume={handelChangeRange} choosemusic={handelChooseMusic} />
             <div className="bottom-bar">
                 <div className="bottom-title">
                     <p>Music by - lofi.co 2022 ©</p>
@@ -165,6 +213,12 @@ const Header = () => {
                 ref={audioRef}
                 src={urlAudio}
                 onTimeUpdate={() => handelTimeUp()}
+                controls
+                hidden
+            />
+            <audio
+                ref={audioRain}
+                src={tiengmuaroi}
                 controls
                 hidden
             />

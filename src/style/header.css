@@ -44,6 +44,37 @@ body {
     position: relative;
 }
 
+.menu {
+    position: relative;
+}
+
+.list-menu {
+    position: absolute;
+    top: 50px;
+    left: -150px;
+    min-width: 170px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    display: none;
+}
+
+.part {
+    display: flex;
+    padding: 10px 5px;
+}
+
+.icon-part {
+    flex: 1;
+    text-align: center;
+}
+
+.content-part {
+    flex: 3;
+}
+
 .switch {
     width: 30px;
     height: 30px;
@@ -64,7 +95,6 @@ body {
 }
 
 .move {
-    position: fixed;
     transform: translateX(40px);
     z-index: 999;
 }
@@ -73,6 +103,7 @@ body {
     position: absolute;
     height: 56.25vw !important;
     transform: translateY(-80px);
+    width: 100vw;
 }
 
 .volume {
@@ -103,7 +134,7 @@ body {
     border-color: #f3a952;
 }
 
-.volume-s {
+.pull-main {
     position: absolute;
     width: 100%;
     height: 100px;
@@ -112,7 +143,7 @@ body {
 
 .change-volume {
     width: 200px;
-    height: 60px;
+    min-height: 30px;
     background-color: rgba(0, 0, 0, 0.542);
     position: absolute;
     top: 40px;
@@ -176,4 +207,11 @@ body {
 
 .augment-opacity:hover {
     opacity: 1;
+}
+
+@media (max-width:1000px) {
+    video {
+        width: 185%;
+        height: 200%;
+    }
 }

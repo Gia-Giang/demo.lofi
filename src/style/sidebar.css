@@ -7,6 +7,10 @@ body {
     user-select: none;
 }
 
+h1 {
+    padding: 10px 0;
+}
+
 .sidebar {
     min-width: 50px;
     height: 270px;
@@ -50,6 +54,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     min-height: 500px;
+    display: none;
 }
 
 .list-moon {
@@ -68,6 +73,7 @@ body {
 .volume-sidebar {
     display: flex;
     justify-content: space-between;
+    padding: 20px 0;
 }
 
 .volume-mood {
@@ -110,4 +116,58 @@ body {
 
 .hide {
     display: none;
+}
+
+.list-music-bar {
+    position: absolute;
+    width: 300px;
+    min-height: 250px;
+    background-color: black;
+    color: white;
+    left: -300px;
+    top: 0;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+    font-size: 10px;
+    overflow: hidden;
+}
+
+.caption-list {
+    background-color: rgba(255, 255, 255, 0.163);
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.music {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name-music {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.flexMusic {
+    display: flex;
+    flex-direction: column;
+}
+
+.animusic {
+    animation: aniMusic 3s linear infinite alternate;
+}
+
+@keyframes aniMusic {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(150px);
+    }
 }
