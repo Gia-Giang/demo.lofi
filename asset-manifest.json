@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/demo.lofi/static/css/main.b6afae6d.css",
+    "main.js": "/demo.lofi/static/js/main.672eaf3d.js",
+    "static/js/787.9df4917a.chunk.js": "/demo.lofi/static/js/787.9df4917a.chunk.js",
+    "static/media/chungtacuahientai.m4a": "/demo.lofi/static/media/chungtacuahientai.3454c294f53eae6fcd00.m4a",
+    "static/media/HoYeuAiMatRoiLofiVersion-DoanHieuMrPaa-6973827.mp3": "/demo.lofi/static/media/HoYeuAiMatRoiLofiVersion-DoanHieuMrPaa-6973827.56f93828bbccf98cd642.mp3",
+    "static/media/HenKiepSau-KhaHiep-7017276.mp3": "/demo.lofi/static/media/HenKiepSau-KhaHiep-7017276.3c409dd46c0410cfd798.mp3",
+    "static/media/Dau O Day Nay - Nal.mp3": "/demo.lofi/static/media/Dau O Day Nay - Nal.5fbb8b6bdd65a3474b2f.mp3",
+    "static/media/That The - H-Kray_ Truzg.mp3": "/demo.lofi/static/media/That The - H-Kray_ Truzg.0ff7d50657839a8f17be.mp3",
+    "static/media/logo.gif": "/demo.lofi/static/media/logo.0cbf9e63b4a021661126.gif",
+    "static/media/Tieng-mua-roi-ti-tach-www_nhacchuongvui_com.mp3": "/demo.lofi/static/media/Tieng-mua-roi-ti-tach-www_nhacchuongvui_com.5d27cd669e676a7c6830.mp3",
+    "static/media/pause.svg": "/demo.lofi/static/media/pause.4ac709263a083f4039b11e120950f9d3.4ac709263a083f4039b11e120950f9d3.svg",
+    "static/media/play.svg": "/demo.lofi/static/media/play.18d46dd90ca12db32170bea8b2d46404.svg",
+    "static/media/next.svg": "/demo.lofi/static/media/next.9551d6f2d952cb6759a725aac878ab09.svg",
+    "static/media/left.svg": "/demo.lofi/static/media/left.3b3474665d6b8d95bb081b41d67270fe.svg",
+    "index.html": "/demo.lofi/index.html",
+    "main.b6afae6d.css.map": "/demo.lofi/static/css/main.b6afae6d.css.map",
+    "main.672eaf3d.js.map": "/demo.lofi/static/js/main.672eaf3d.js.map",
+    "787.9df4917a.chunk.js.map": "/demo.lofi/static/js/787.9df4917a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6afae6d.css",
+    "static/js/main.672eaf3d.js"
+  ]
+}
